@@ -56,3 +56,14 @@ PCA_feature(X, y, ['season_fall', 'season_spring', 'season_summer', 'season_wint
 PCA_feature(X, y, ['month_Apr', 'month_Aug', 'month_Dec', 'month_Feb','month_Jan', 'month_Jul', 'month_Jun', 'month_Mar', 'month_May', 'month_Nov', 'month_Oct', 'month_Sep'])
 PCA_feature(X, y, ['weekday_Fri', 'weekday_Mon', 'weekday_Sat', 'weekday_Sun', 'weekday_Thu', 'weekday_Tue', 'weekday_Wed'])
 PCA_feature(X, y, ['weather_Clear or partly cloudy', 'weather_Heavy rain','weather_Light rain', 'weather_Mist'])
+print(
+'''
+                            #####      ####### 
+#####   ##    ####  #    # #     #     #       
+  #    #  #  #      #   #        #     #       
+  #   #    #  ####  ####    #####      ######  
+  #   ######      # #  #   #       ###       # 
+  #   #    # #    # #   #  #       ### #     # 
+  #   #    #  ####  #    # ####### ###  #####  
+'''
+    )
