@@ -35,7 +35,9 @@ def cluster_PCA(X, y):
     X_reduced = pca.fit_transform(X)
 
     plt.figure(num = 1, figsize = (15,15))
-    plt.title("Project Clusters to PCA Space")
+    plt.title("Project Clusters to PCA Space", fontsize=30)
+    plt.xlabel(str(pca.explained_variance_ratio_[0]), fontsize=30)
+    plt.ylabel(str(pca.explained_variance_ratio_[1]), fontsize=30)
     plt.scatter(X_reduced[:,0], X_reduced[:,1], c=model.labels_)
     plt.savefig('cluster_PCA.png')
     plt.close()
@@ -49,7 +51,9 @@ def cluster_trans(X, y):
     model = AgglomerativeClustering(n_clusters=4).fit(X_reduced)
 
     plt.figure(num = 1, figsize = (15,15))
-    plt.title("Clustering PCA-transformed Data")
+    plt.title("Clustering PCA-transformed Data", fontsize=30)
+    plt.xlabel(str(pca.explained_variance_ratio_[0]), fontsize=30)
+    plt.ylabel(str(pca.explained_variance_ratio_[1]), fontsize=30)
     plt.scatter(X_reduced[:,0], X_reduced[:,1], c=model.labels_)
     plt.savefig('cluster_trans.png')
     plt.close()
@@ -58,10 +62,10 @@ def cluster(X, y):
 
     model = AgglomerativeClustering(distance_threshold=0, n_clusters=None).fit(X)
 
-    plt.figure(num = 1, figsize = (5,5))
+    plt.figure(num = 1, figsize = (12,5))
     plt.title("Hierarchical Clustering Dendrogram")
-    plot_dendrogram(model, truncate_mode="level", p=4)
-    plt.xlabel("Number of points in node (or index of point if no parenthesis).")
+    plot_dendrogram(model, truncate_mode="level", p=3)
+    plt.xlabel("Number of points in node")
     plt.savefig('cluster.png')
     plt.close()
 
