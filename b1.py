@@ -33,7 +33,6 @@ clf = OneVsRestClassifier(
 print("Train Accuracy:",clf.score(X_train,y_train))
 print("Test Accuracy:",clf.score(X_test,y_test))
 
-
 print("\n Use onehot encoded data")
 time.sleep(2)
 print("One vs One calssifier:")
@@ -57,3 +56,14 @@ clf = OneVsRestClassifier(
 # clf = LogisticRegression(max_iter = 10000).fit(X_train, y_train)
 print("Train Accuracy:",clf.score(X_train,y_train))
 print("Test Accuracy:",clf.score(X_test,y_test))
+print(
+'''
+                            #####        #   
+#####   ##    ####  #    # #     #      ##   
+  #    #  #  #      #   #        #     # #   
+  #   #    #  ####  ####    #####        #   
+  #   ######      # #  #   #       ###   #   
+  #   #    # #    # #   #  #       ###   #   
+  #   #    #  ####  #    # ####### ### ##### 
+'''
+)
