@@ -14,7 +14,7 @@ def SVM(X_train, X_test, y_train, y_test, kernel):
     mse_lst = []
     r2_lst = []
 
-    model = cross_validate(SVR(kernel=kernel), X_train, y_train, n_jobs=-1, return_estimator = True)
+    model = cross_validate(SVR(C = 0.5, kernel=kernel), X_train, y_train, n_jobs=-1, return_estimator = True)
     for m in model['estimator']:
         y_pred = m.predict(X_test)
         mse_lst.append(mean_squared_error(y_pred, y_test))
