@@ -20,10 +20,13 @@ def PCA_feature(X, y, features):
 
     pca = PCA(n_components=2)
     X_reduced = pca.fit_transform(X_scale)
-    plt.figure(num = 1, figsize = (10,10))
-    plt.scatter(X_reduced[:,0], X_reduced[:,1], c=y)
 
     obj = re.split(r'_', features[0])
+    plt.figure(num = 1, figsize = (10,10))
+    plt.title('no_'+obj[0])
+    plt.xlabel(str(pca.explained_variance_ratio_[0]))
+    plt.ylabel(str(pca.explained_variance_ratio_[1]))
+    plt.scatter(X_reduced[:,0], X_reduced[:,1], c=y)
     plt.savefig('no_'+obj[0]+'.png')
     plt.close()
 
