@@ -19,7 +19,7 @@ def DecisionTree(X_train, X_test, y_train, y_test):
     print('score:', score)
 
 X, y_lst = data_preprocess()
-y = y_lst['Subscribed']
+y = y_lst['Non-subscribed']
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, shuffle=True, random_state=0)
 DecisionTree(X_train, X_test, y_train, y_test)
 print(
