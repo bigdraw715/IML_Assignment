@@ -8,25 +8,30 @@ from preprocess import *
 def RandomForest(X_train, X_test, y_train, y_test):
 
     # parameter tuning
-    param_dict = dict(n_estimators = range(0,100,10),
+    param_dict = dict(n_estimators = range(10,50,5),
                         criterion = ['mse','mae', 'poisson'],
-                        max_depth = range(2,40,2))
+                        max_depth = range(2,20,2))
     #'criterion': ('squared_error','absolute_error', 'poisson')
     rf = RandomizedSearchCV(RandomForestRegressor(), param_dict, random_state=0, n_jobs=-1)
     rf.fit(X_train, y_train)
+    p_dict = rf.best_params_
+    print('best param:', p_dict)
+
     rf_y_pred = rf.predict(X_test)
 
     rf_mse = mean_squared_error(rf_y_pred, y_test)
     rf_score = rf.score(X_test, y_test)
 
+    print('rf_mse:', rf_mse)
+    print('rf_score:', rf_score)
+
     #out of bag
     mse_lst = []
     r2_lst = []
 
-    p_dict = rf.best_params_
-    rf_oob = cross_validate(RandomForestRegressor(n_estimators = p_dict[0], 
-                                    criterion = p_dict[1], 
-                                    max_depth = p_dict[2],
+    rf_oob = cross_validate(RandomForestRegressor(n_estimators = p_dict['n_estimators'], 
+                                    criterion = p_dict['criterion'], 
+                                    max_depth = p_dict['max_depth'],
                                     oob_score = True), 
                                 X_train, y_train, n_jobs=-1, return_estimator = True)
 
@@ -38,8 +43,6 @@ def RandomForest(X_train, X_test, y_train, y_test):
     rf_obb_mse = np.mean(mse_lst)
     rf_oob_score = np.mean(r2_lst)
 
-    print('rf_mse:', rf_mse)
-    print('rf_score:', rf_score)
     print('rf_obb_mse:', rf_obb_mse)
     print('rf_oob_score:', rf_oob_score)
 
