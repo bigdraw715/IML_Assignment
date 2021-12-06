@@ -98,9 +98,8 @@ def data_preprocess(method = "scale",visualize= False):
         X = dataset[['year1','month1','day1','season','year','hour','weekday','weather','temperature','feeling_temperature','humidity','windspeed']]
         y =dataset[['Subscribed','Non-subscribed','Total','category']]
 
-        X_final = scale_norm(X)
         print('preprocessing done!')
-        return X_final, y
+        return X, y
 
 def count_B(dataset):
     weather = Counter(np.array(dataset['weather']))
