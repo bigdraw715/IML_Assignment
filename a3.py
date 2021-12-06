@@ -11,9 +11,9 @@ X_onehot,y_onehot = data_preprocess(method="onehot")
 rig = Ridge(alpha = 2)
 scores = cross_validate(rig, X_onehot, y_onehot, cv=5, scoring=('r2', 'neg_mean_squared_error'),return_train_score=True)
 print("Cross Validation Train MSE:",scores['train_neg_mean_squared_error'])
-print("Cross Validation Train MSE:",scores['test_neg_mean_squared_error'])
+print("Cross Validation Test MSE:",scores['test_neg_mean_squared_error'])
 print("Cross Validation Train R2:",scores['train_r2'])
-print("Cross Validation Train R2:",scores['test_r2'])
+print("Cross Validation Test R2:",scores['test_r2'])
 
 
 
