@@ -14,3 +14,14 @@ print("Cross Validation Train MSE:",np.mean(scores['train_neg_mean_squared_error
 print("Cross Validation Test MSE:",np.mean(scores['test_neg_mean_squared_error']))
 print("Cross Validation Train R2:",np.mean(scores['train_r2']))
 print("Cross Validation Test R2:",np.mean(scores['test_r2']))
+print(
+'''
+                             #        #####  
+#####   ##    ####  #    #  ##       #     # 
+  #    #  #  #      #   #  # #             # 
+  #   #    #  ####  ####     #        #####  
+  #   ######      # #  #     #   ###       # 
+  #   #    # #    # #   #    #   ### #     # 
+  #   #    #  ####  #    # ##### ###  #####  
+'''
+)
