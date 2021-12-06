@@ -9,10 +9,16 @@ import re
 
 def PCA_feature(X, y, features):
 
-    if features == 'all':
+    obj = re.split(r'_', features[0])
+
+    if features == ['all']:
         X_sub = X
+        title = obj[0]
+        save = obj[0]+'.png'
     else:
         X_sub = X.loc[:,~X.columns.isin(features)]
+        title = 'no_'+obj[0]
+        save = 'no_'+obj[0]+'.png'
 
     scaler = StandardScaler()
     scaler.fit(X_sub)
@@ -21,13 +27,12 @@ def PCA_feature(X, y, features):
     pca = PCA(n_components=2)
     X_reduced = pca.fit_transform(X_scale)
 
-    obj = re.split(r'_', features[0])
     plt.figure(num = 1, figsize = (10,10))
-    plt.title('no_'+obj[0])
-    plt.xlabel(str(pca.explained_variance_ratio_[0]))
-    plt.ylabel(str(pca.explained_variance_ratio_[1]))
+    plt.title(title, fontsize=30)
+    plt.xlabel(str(pca.explained_variance_ratio_[0]), fontsize=30)
+    plt.ylabel(str(pca.explained_variance_ratio_[1]), fontsize=30)
     plt.scatter(X_reduced[:,0], X_reduced[:,1], c=y)
-    plt.savefig('no_'+obj[0]+'.png')
+    plt.savefig(save)
     plt.close()
 
 X, y_lst = data_preprocess(method="onehot")
