@@ -1,10 +1,9 @@
 from sklearn.ensemble import RandomForestRegressor
-from sklearn.model_selection import RandomizedSearchCV
+from sklearn.model_selection import RandomizedSearchCV, cross_validate, train_test_split
 from sklearn.neighbors import LocalOutlierFactor
+from sklearn.metrics import mean_squared_error, r2_score
 import numpy as np
 from preprocess import *
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import mean_squared_error, r2_score
 
 def RandomForest(X_train, X_test, y_train, y_test):
 
@@ -21,16 +20,23 @@ def RandomForest(X_train, X_test, y_train, y_test):
     rf_score = rf.score(X_test, y_test)
 
     #out of bag
+    mse_lst = []
+    r2_lst = []
+
     p_dict = rf.best_params_
-    rf_oob_y_pred = cross_val_predict(RandomForestRegressor(n_estimators = p_dict[0], 
+    rf_oob = cross_validate(RandomForestRegressor(n_estimators = p_dict[0], 
                                     criterion = p_dict[1], 
                                     max_depth = p_dict[2],
                                     oob_score = True), 
-                                X_train, y_train, n_jobs=-1)
+                                X_train, y_train, n_jobs=-1, return_estimator = True)
 
-    rf_obb_mse = mean_squared_error(rf_oob_y_pred, y_test)
-    rf_oob_score = r2_score(rf_oob_y_pred, y_test)
+    for m in rf_oob['estimator']:
+        y_pred = m.predict(X_test)
+        mse_lst.append(mean_squared_error(y_pred, y_test))
+        r2_lst.append(m.score(X_test, y_test))
 
+    rf_obb_mse = np.mean(mse_lst)
+    rf_oob_score = np.mean(r2_lst)
 
     print('rf_mse:', rf_mse)
     print('rf_score:', rf_score)
