@@ -14,10 +14,6 @@ def PCA_feature(X, y, features):
     else:
         X_sub = X.loc[:,~X.columns.isin(features)]
 
-    #print(list(X_sub))
-
-    #X_scale = scale_norm(X_sub)
-
     scaler = StandardScaler()
     scaler.fit(X_sub)
     X_scale = scaler.transform(X_sub)
