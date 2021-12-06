@@ -28,7 +28,7 @@ def PCA_feature(X, y, features):
     plt.scatter(X_reduced[:,0], X_reduced[:,1], c=y)
 
     obj = re.split(r'_', features[0])
-    plt.savefig(obj[0]+'.png')
+    plt.savefig('no_'+obj[0]+'.png')
     plt.close()
 
 X, y_lst = data_preprocess(method="onehot")
