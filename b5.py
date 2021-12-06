@@ -20,9 +20,7 @@ def PCA_feature(X, y, features):
         title = 'no_'+obj[0]
         save = 'no_'+obj[0]+'.png'
 
-    scaler = StandardScaler()
-    scaler.fit(X_sub)
-    X_scale = scaler.transform(X_sub)
+    X_scale = scale_norm(X_sub)
 
     pca = PCA(n_components=2)
     X_reduced = pca.fit_transform(X_scale)
